@@ -3,11 +3,13 @@ import react from '@vitejs/plugin-react';
 import dts from 'vite-plugin-dts';
 import { resolve } from 'path';
 
+const isStorybook = process.env.STORYBOOK === 'true';
+
 export default defineConfig({
   plugins: [
     react(),
-    dts({ include: ['src'], rollupTypes: true }),
-  ],
+    !isStorybook && dts({ include: ['src'] }),
+  ].filter(Boolean) as ReturnType<typeof react>[],
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
