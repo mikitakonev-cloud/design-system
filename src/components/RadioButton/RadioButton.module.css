@@ -1,0 +1,94 @@
+.wrapper {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.wrapper.disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.ring {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 1px;
+  border-radius: 50%;
+  border: 1.5px solid #EAD9C1;
+  background-color: #F5EBD8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+  position: relative;
+}
+
+.wrapper:not(.disabled):hover .ring {
+  background-color: #EAD9C1;
+  border-color: #BB9571;
+}
+
+.wrapper:not(.disabled):focus-within .ring {
+  outline: 2px solid #3B82F6;
+  outline-offset: 2px;
+}
+
+.ring.selected {
+  background-color: #BC8000;
+  border-color: #BC8000;
+}
+
+.wrapper:not(.disabled):hover .ring.selected {
+  background-color: #D69200;
+  border-color: #D69200;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #FBF6EF;
+  display: none;
+}
+
+.ring.selected .dot {
+  display: block;
+}
+
+.textStack {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.label {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #5C3920;
+}
+
+.helperText {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #9E7452;
+}
+
+.disabled .label,
+.disabled .helperText {
+  color: #D4B896;
+}
